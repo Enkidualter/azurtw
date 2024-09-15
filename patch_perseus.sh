@@ -29,8 +29,22 @@ if [ ! -f "com.hkmanjuu.azurlane.gp" ]; then
 
     # eg: wget "your download link" -O "your packge name.apk" -q
     #if you want to patch .xapk, change the suffix here to wget "your download link" -O "your packge name.xapk" -q
-    wget https://drive.usercontent.google.com/download?id=1GEZR3WIZeWnls8xo4hWM-ol2qA3mOGVj&export=download&authuser=0&confirm=t&uuid=6db79dfd-f51f-4db0-9d37-913c20a12e21&at=AO7h07fGXap_oGGmmAfHHGGEk6pP%3A1726426116840 -O com.hkmanjuu.azurlane.gp -q
-    echo "apk downloaded !"
+    file_id="1GEZR3WIZeWnls8xo4hWM-ol2qA3mOGVj"
+file_name="com.hkmanjuu.azurlane.gp"
+
+# 先请求获取确认令牌，然后使用该令牌下载文件
+wget --quiet --save-cookies cookies.txt 'https://drive.google.com/uc?export=download&id='$file_id -O- \
+    | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1/p' > confirm.txt
+
+# 使用确认令牌进行实际的文件下载
+confirm=$(<confirm.txt)
+wget --load-cookies cookies.txt "https://drive.google.com/uc?export=download&confirm=$confirm&id=$file_id" -O $file_name -q
+
+# 清理临时文件
+rm -f cookies.txt confirm.txt
+
+# 输出下载完成信息
+echo "apk downloaded !"
     
     # if you can only download .xapk file uncomment 2 lines below. (delete the '#')
     #unzip -o com.YoStarJP.AzurLane.xapk -d AzurLane
