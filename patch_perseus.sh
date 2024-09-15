@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # Download apkeep
 get_artifact_download_url () {
     # Usage: get_download_url <repo_name> <artifact_name> <file_type>
@@ -25,17 +24,17 @@ done
 chmod +x apkeep
 
 # Download Azur Lane
-download_azurlane () {
-    if [ ! -f "com.hkmanjuu.azurlane.gp.xapk" ]; then
-    ./apkeep -a com.hkmanjuu.azurlane.gp .
-    fi
-}
-
-if [ ! -f "com.hkmanjuu.azurlane.gp.apk" ]; then
+if [ ! -f "com.hkmanjuu.azurlane.gp" ]; then
     echo "Get Azur Lane apk"
-    download_azurlane
-    unzip -o com.hkmanjuu.azurlane.gp.xapk -d AzurLane
-    cp AzurLane/com.hkmanjuu.azurlane.gp.apk .
+
+    # eg: wget "your download link" -O "your packge name.apk" -q
+    #if you want to patch .xapk, change the suffix here to wget "your download link" -O "your packge name.xapk" -q
+    wget https://apkpure.com/cn/%E7%A2%A7%E8%97%8D%E8%88%AA%E7%B7%9A/com.hkmanjuu.azurlane.gp/downloading -O com.hkmanjuu.azurlane.gp -q
+    echo "apk downloaded !"
+    
+    # if you can only download .xapk file uncomment 2 lines below. (delete the '#')
+    #unzip -o com.YoStarJP.AzurLane.xapk -d AzurLane
+    #cp AzurLane/com.YoStarJP.AzurLane.apk .
 fi
 
 # Download Perseus
@@ -45,7 +44,7 @@ if [ ! -d "Perseus" ]; then
 fi
 
 echo "Decompile Azur Lane apk"
-java -jar apktool.jar -q -f d com.hkmanjuu.azurlane.gp.apk
+java -jar apktool.jar -q -f d com.hkmanjuu.azurlane.gp
 
 echo "Copy Perseus libs"
 cp -r Perseus/. com.hkmanjuu.azurlane.gp/lib/
