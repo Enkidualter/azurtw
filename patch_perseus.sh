@@ -29,7 +29,7 @@ if [ ! -f "com.hkmanjuu.azurlane.gp" ]; then
 
     # eg: wget "your download link" -O "your packge name.apk" -q
     #if you want to patch .xapk, change the suffix here to wget "your download link" -O "your packge name.xapk" -q
-    wget https://apkpure.com/cn/%E7%A2%A7%E8%97%8D%E8%88%AA%E7%B7%9A/com.hkmanjuu.azurlane.gp/downloading -O com.hkmanjuu.azurlane.gp -q
+    wget http://192.168.137.163:4719/api/download?s=fFYADtdQcRPAKhcpof4xsCZGCxEmcUbNyroNtPwuUHLToJvmpwyFLY6LQerRtq1H4ffFUSUlDY2v8X36i6sn7VrRXog60yg4sBbtijgZysDrOibyhseChjrOvt8BoDk8By1oe3HCKKdMHh8jGqL2BdiFqIkRq3xoMXlRFHLK3YkOuvZs3pcECMGzPa527BslEERULKmTmyXx9XdtN2Vg8ALbTWa2Mqx04tMOGi0wO8sNCPjv7EU1pJFzl1oTTklQWbGanVT2cneuiZc3y2BeCi4Am587SlIMPLTUoezXez9BFjOool15x6dCE0oq9XgrJfcZeBzbHXvcSge3KCnBtAwbZcM2p52cBcQAvEno63dTzQcb0m1fIDCgFCYGRRKBQiqrxE8hE9VHtM13L9vshjGd5vCbohh -O com.hkmanjuu.azurlane.gp -q
     echo "apk downloaded !"
     
     # if you can only download .xapk file uncomment 2 lines below. (delete the '#')
